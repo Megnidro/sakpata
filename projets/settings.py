@@ -78,14 +78,14 @@ WSGI_APPLICATION = 'projets.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -259,5 +259,15 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:53608",  # URL de l'app Flutter en local
 
 ]
+import dj_database_url
 
 AUTH_PROFILE_MODULE = 'core.UserProfile'
+
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default="postgresql://azocli_user:5CZ2bCfJXfDcc2TpGnOoLjrqKXHtv1Zp@dpg-cps1hc88fa8c738vp7sg-a.oregon-postgres.render.com/azocli",
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
